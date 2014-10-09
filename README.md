@@ -7,4 +7,18 @@ A mini project to practice basic Node.JS fundamentals and server-side programmin
 Use Node.JS to build a simple socket server that responds to commands with text.
 
 ##Step 1: Check out the Web Client
-Use your mobile device to navigate to 
+Navigate to http://siri-client.devmounta.in. This is a really simple Angular app that needs its back end completed. So far you can send messages, but there are no replies coming back. We're going to build the reply part.
+
+##Step 2: Create server.js
+Create a server.js file in your repo. Now next steps:
+* Require the 'http' module
+* Create a server that listens on port 8887.
+
+##Step 3: the GET call
+The Siri-client is looking for a connection on port 8887 and will try to send a GET request to get a message.
+* Create an array of messages that Siri might say, for example:
+
+```javascript
+var messages = ["Hello there." "I'm sorry, I cannot take any requests at this time." "I can tell you how to do that."];
+```
+* When a get request comes in, have your server reply back with a random message from that array. Just send back the string.
