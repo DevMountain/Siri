@@ -41,7 +41,7 @@ To test yourself, use Postman to create a GET request to your server. Make sure 
 ##Step 4: Cleaning Up
 If your Postman request is working, great! You'll notice that the Siri client isn't yet working. This is because browsers are very careful about data they get from other domains. It's an easy place for an attack. So we need to add in an extra call that the browser is making so it will allow data to come from our server.
 
-* If the request's method is OPTIONS (this is the call the browser makes), return the following header/response:
+* If the request's method is OPTIONS (this is the call the browser makes to check if the site we're getting data from allows cross-origin requests), return the following header/response:
 
 ```javascript
 res.writeHead(200, {
