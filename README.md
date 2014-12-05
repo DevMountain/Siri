@@ -23,23 +23,23 @@ var messages = ["Hello there." "I'm sorry, I cannot take any requests at this ti
 ```
 
 * When a GET request comes in, have your server reply back with a random message from that array. Send it back in an object, like so:
-* 
+
 ```javascript
 {message: 'hello'}
 ```
 
 Remember, you examine the request object in your server callback function and check to see which method was used. Then you can send a response.
 
-And don't forget, to make sure this is valid JSON, let's use the built-in JSON.stringify method to convert our object to JSON:
+And don't forget, to make sure this is valid JSON, let's use the built-in `JSON.stringify` method to convert our object to JSON:
 
 ```javascript
 res.end(JSON.stringify({message: myMessage});
 ```
 
-To test yourself, use Postman to create a GET request to your server. Make sure it returns
+To test yourself, use Postman to create a GET request to your server. Make sure it returns the object containing the message.
 
 ##Step 4: Cleaning Up
-If your POSTMAN request is working, great! You'll notice that the Siri client isn't yet working. This is because browsers are very careful about data they get from other domains. It's an easy place for an attack. So we need to add in an extra call that the browser is making so it will allow data to come from our server.
+If your Postman request is working, great! You'll notice that the Siri client isn't yet working. This is because browsers are very careful about data they get from other domains. It's an easy place for an attack. So we need to add in an extra call that the browser is making so it will allow data to come from our server.
 
 * If the request's method is OPTIONS (this is the call the browser makes), return the following header/response:
 
