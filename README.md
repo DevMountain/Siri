@@ -19,7 +19,7 @@ The Siri-client is looking for a connection on port 8887 and will try to send a 
 * Create an array of messages that Siri might say, for example:
 
 ```javascript
-var messages = ["Hello there." "I'm sorry, I cannot take any requests at this time." "I can tell you how to do that."];
+var messages = ["Hello there.", "I'm sorry, I cannot take any requests at this time.", "I can tell you how to do that."];
 ```
 
 * When a GET request comes in, have your server reply back with a random message from that array. Send it back in an object, like so:
