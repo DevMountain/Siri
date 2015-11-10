@@ -10,7 +10,7 @@ Use Node.JS to build a simple socket server that responds to commands with text.
 Navigate to http://devmountain.github.io/Siri-client/. This is a really simple Angular app that needs its back end completed. So far you can send messages, but there are no replies coming back. We're going to build the reply part.
 
 ##Step 2: Create server.js
-Before we start coding we need to run through some basic app setup. First of all, in your command line inside your project directory run an `npm init` command. This will create a package.json file for you and allow you to save npm dependencies. Now run `npm install express --save`
+Before we start coding we need to run through some basic app setup. First of all, in your command line inside your project directory run an `npm init` command. This will create a package.json file for you and allow you to save npm dependencies. Now run `npm install express --save`.
 
 Create a server.js file in your repo and begin next steps:
 * Require the 'express' module by using the require function and assigning the result to a variable. `var express = require('express');`
@@ -23,6 +23,8 @@ app.listen(8887, function() {
 ```
 
 * Now when each time you run your server your message will print to the terminal.
+
+* Now that you have the basics of your server set up run `nodemon server.js` inside your project directory and check that your console prints out `Listening on 8887`.
 
 ##Step 3: the GET call
 The Siri-client is looking for a connection on port 8887 and will try to send a GET request to get a message.
@@ -38,7 +40,7 @@ var messages = ["Hello there.", "I'm sorry, I cannot take any requests at this t
 {message: 'hello'}
 ```
 
-Don't forget, to make sure this is valid JSON, let's use the built-in `JSON.stringify` method to convert our object to JSON:
+Don't forget, to make sure this is valid JSON let's use the built-in `JSON.stringify` method to convert our object to JSON:
 
 ```javascript
 app.get('/', function( req, res ) {
@@ -46,7 +48,7 @@ app.get('/', function( req, res ) {
 });
 ```
 
-To test yourself, use Postman to create a GET request to your server. Make sure it returns the object containing the message.
+To test this yourself, use Postman to create a GET request to your server. Make sure it returns the object containing the message.
 
 ##Step 4: Cleaning Up
 If your Postman request is working, great! You'll notice that the Siri client isn't yet working. This is because browsers are very careful about data they get from other domains. It's an easy place for an attack. So we need to add in an extra call that the browser is making so it will allow data to come from our server.
@@ -64,6 +66,22 @@ app.options('/', function( req, res ) {
 		'X-Frame-Options': 'SAMEORIGIN',
 		'Content-Security-Policy': "default-src 'self' devmountain.github.io"
 	}).send();
+});
+```
+
+You will need to add the same headers to your `app.get` method as well. It should look something like this:
+
+```javascript
+app.get('/', function( req, res ) {
+	res.status(200).set({
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'OPTIONS, GET, POST',
+		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+		'X-XSS-Protection': '1; mode=block',
+		'X-Frame-Options': 'SAMEORIGIN',
+		'Content-Security-Policy': "default-src 'self' devmountain.github.io"
+	}).send(JSON.stringify({ message: getRandomMessage() }));
 });
 ```
 
