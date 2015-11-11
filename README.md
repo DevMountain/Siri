@@ -9,12 +9,19 @@ Use Node.JS to build a simple socket server that responds to commands with text.
 Navigate to <http://devmountain.github.io/Siri-client/>. This is a really simple Angular app that needs its back end completed. So far you can send messages, but there are no replies coming back. We're going to build the reply part.
 
 #### Step 2: Create server.js
-Before we start coding we need to run through some basic app setup. First of all, in your command line inside your project directory run an `npm init` command. This will create a package.json file for you and allow you to save npm dependencies. Now run `npm install express --save`.
+Before we start coding we need to run through some basic app setup. First of all, in your command line inside your project directory run an `npm init` command. This will create a package.json file for you and allow you to save npm dependencies. Before installing anything, we'll want to add a gitignore, so we're not committing massive amounts of dependencies to your repo.
+
+```shell
+echo "node_modules/" > .gitignore
+
+```
+
+Now we can run `npm install express --save`.
 
 Create a server.js file in your repo and begin next steps:
 * Require the 'express' module by using the require function and assigning the result to a variable. `var express = require('express')`
 * Now you will need to initialize express using `var app = express()`
-* Create a server that listens on port 8887 by using `app.listen(8887)`. Note that the listen method can also take a callback function as a second argument, this is frequently used to console log a success message. Add this like so: 
+* Create a server that listens on port 8887 by using `app.listen(8887)`. Note that the listen method can also take a callback function as a second argument, this is frequently used to console log a success message. Add this like so:
 ```javascript
 app.listen(8887, function() {
     console.log('Listening on port 8887');
