@@ -16,6 +16,8 @@ echo "node_modules/" > .gitignore
 
 ```
 
+It would be a good idea to add .DS_Store (and any other platform-specific binaries and potential security risks) to your gitignore as well.
+
 Now we can run `npm install express --save`.
 
 Create a server.js file in your repo and begin next steps:
